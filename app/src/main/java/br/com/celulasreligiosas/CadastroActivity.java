@@ -67,25 +67,31 @@ public class CadastroActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_cadastro_ok:
+        Celula celula = cadastroHelper.pegaCelula();
 
-                Celula celula = cadastroHelper.pegaCelula();
+        if(null != celula) {
+            switch (item.getItemId()) {
+                case R.id.menu_cadastro_ok:
 
-                CelulasDAO dao = new CelulasDAO(this);
+                    CelulasDAO dao = new CelulasDAO(this);
 
-                if(celula.getId() != null){
-                    dao.update(celula);
-                }else{
-                    dao.insert(celula);
-                }
+                    if (celula.getId() != null) {
+                        dao.update(celula);
+                    } else {
+                        dao.insert(celula);
+                    }
 
-                dao.close();
+                    dao.close();
 
-                Toast.makeText(this,"Celula "+celula.getNome()+" salvo!",Toast.LENGTH_SHORT).show();
-                finish();
-                break;
+                    Toast.makeText(this, "Celula " + celula.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
+                    finish();
+                    break;
+
+            }
+        } else {
+            Toast.makeText(this, "Favor preencher todos os campos.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

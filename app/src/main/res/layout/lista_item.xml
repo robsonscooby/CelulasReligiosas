@@ -20,7 +20,7 @@
             android:id="@+id/item_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome"
+            android:text="Text1"
             android:textSize="16dp"
             android:textStyle="bold"
             android:paddingLeft="10dp"/>
@@ -29,7 +29,7 @@
             android:id="@+id/item_telefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefone"
+            android:text="Text2"
             android:textSize="16dp"
             android:paddingLeft="10dp"
             android:paddingTop="8dp"/>

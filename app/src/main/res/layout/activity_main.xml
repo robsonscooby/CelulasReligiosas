@@ -1,76 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tela_principal"/>
 
-            <Button
-                android:id="@+id/cadastro_btn_foto"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/fundo_mapa"
-                android:layout_gravity="center"
-                android:onClick="telaMapa"/>
+    <com.hitomi.cmlibrary.CircleMenu
+        android:id="@+id/circleTela"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/txt_principal_btn1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@string/txt_princial_mapa"/>
 
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/principal_cadastro"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/fundo_mapa"
-                android:layout_gravity="center"
-                android:onClick="telaCadastro"/>
-
-            <TextView
-                android:id="@+id/txt_principal_btn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@string/txt_principal_cadastro"/>
-
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/principal_existente"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/fundo_mapa"
-                android:layout_gravity="center"
-                android:onClick="telaListaCelulas"/>
-
-            <TextView
-                android:id="@+id/txt_principal_btn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="@string/txt_principal_Lista_celulas"/>
-
-        </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

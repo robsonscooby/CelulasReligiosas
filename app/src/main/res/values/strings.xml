@@ -8,4 +8,6 @@
     <string name="txt_princial_mapa">Células no Mapa</string>
     <string name="txt_principal_cadastro">Cadastro Célula</string>
     <string name="txt_principal_Lista_celulas">Células Cadastradas</string>
+    <string name="txt_principal_noticias">Notícias</string>
+    <string name="txt_noticia_info">Carregando notícias...</string>
 </resources>

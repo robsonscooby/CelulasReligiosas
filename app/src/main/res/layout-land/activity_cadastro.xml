@@ -33,30 +33,35 @@
     <EditText
         android:id="@+id/cadastro_nome"
         android:hint="@string/txt_cadastro_nome"
+        android:inputType="textCapSentences"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/cadastro_endereco"
         android:hint="@string/txt_cadastro_endereco"
+        android:inputType="textCapSentences"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/cadastro_telefone"
         android:hint="@string/txt_cadastro_telefone"
+        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/cadastro_site"
         android:hint="@string/txt_cadastro_site"
+        android:inputType="textUri"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/cadastro_descricao"
         android:hint="@string/txt_cadastro_descricao"
+        android:inputType="textCapSentences"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

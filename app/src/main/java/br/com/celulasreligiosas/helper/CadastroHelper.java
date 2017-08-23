@@ -34,13 +34,17 @@ public class CadastroHelper {
     }
 
     public Celula pegaCelula(){
-        celula.setNome(nome.getText().toString());
-        celula.setEndereco(end.getText().toString());
-        celula.setTelefone(tel.getText().toString());
-        celula.setSite(site.getText().toString());
-        celula.setDescricao(desc.getText().toString());
-        celula.setCaminhoFoto((String )foto.getTag());
-        return celula;
+        if(validaPreencimentoCampos()) {
+            celula.setNome(nome.getText().toString());
+            celula.setEndereco(end.getText().toString());
+            celula.setTelefone(tel.getText().toString());
+            celula.setSite(site.getText().toString());
+            celula.setDescricao(desc.getText().toString());
+            celula.setCaminhoFoto((String) foto.getTag());
+            return celula;
+        } else {
+            return null;
+        }
     }
 
     public void preencheCadastro(Celula celula) {
@@ -62,6 +66,19 @@ public class CadastroHelper {
             foto.setImageBitmap(bmReduzido);
             foto.setScaleType(ImageView.ScaleType.FIT_XY);
             foto.setTag(caminhoFoto);
+        }
+    }
+
+    private boolean validaPreencimentoCampos(){
+
+        if(nome.getText().toString().trim().isEmpty()
+        || end.getText().toString().trim().isEmpty()
+        || tel.getText().toString().trim().isEmpty()
+        || site.getText().toString().trim().isEmpty()
+        || desc.getText().toString().trim().isEmpty()){
+            return false;
+        } else{
+            return true;
         }
     }
 
