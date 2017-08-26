@@ -5,6 +5,8 @@
     <string name="txt_cadastro_telefone">Telefone</string>
     <string name="txt_cadastro_site">Site</string>
     <string name="txt_cadastro_descricao">Descrição</string>
+    <string name="txt_cadastro_cep">CEP ex.53421180</string>
+    <string name="txt_cadastro_busca">Buscar</string>
     <string name="txt_princial_mapa">Células no Mapa</string>
     <string name="txt_principal_cadastro">Cadastro Célula</string>
     <string name="txt_principal_Lista_celulas">Células Cadastradas</string>

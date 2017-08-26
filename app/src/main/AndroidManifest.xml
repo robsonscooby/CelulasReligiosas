@@ -47,7 +47,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".NoticiasActivity"></activity>
+        <activity android:name=".NoticiasActivity" />
     </application>
 
 </manifest>

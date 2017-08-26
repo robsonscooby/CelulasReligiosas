@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,12 +19,15 @@ import java.io.File;
 import br.com.celulasreligiosas.dao.CelulasDAO;
 import br.com.celulasreligiosas.entity.Celula;
 import br.com.celulasreligiosas.helper.CadastroHelper;
+import br.com.celulasreligiosas.task.HttpUrlConnectionAsyncTask;
 
 public class CadastroActivity extends AppCompatActivity {
 
+    public static final String URL_WEBSERVICE = "https://viacep.com.br/ws/##cep##/json/";
     public static final int CODIGO_FOTO = 4845;
     private CadastroHelper cadastroHelper;
     private String caminhoFoto;
+    private TextView cep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class CadastroActivity extends AppCompatActivity {
         Celula celula = (Celula) intent.getSerializableExtra("celula");
         cadastroHelper.preencheCadastro(celula);
 
+        cep = (TextView) findViewById(R.id.cadastro_cep);
+
         Button botaoFoto = (Button) findViewById(R.id.cadastro_btn_foto);
         botaoFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +53,13 @@ public class CadastroActivity extends AppCompatActivity {
                 startActivityForResult(tirarFoto,CODIGO_FOTO);
             }
         });
+    }
+
+    public void buscaEndereco(View view){
+        HttpUrlConnectionAsyncTask task = new HttpUrlConnectionAsyncTask(this);
+        String prepara = URL_WEBSERVICE;
+        prepara = prepara.replaceAll("##cep##",cep.getText().toString());
+        task.execute(prepara);
     }
 
     @Override

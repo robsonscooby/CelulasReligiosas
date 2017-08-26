@@ -5,6 +5,8 @@
     <string name="txt_cadastro_telefone">Telephone Number</string>
     <string name="txt_cadastro_site">Website</string>
     <string name="txt_cadastro_descricao">Description</string>
+    <string name="txt_cadastro_cep">Zip code ex.53421180</string>
+    <string name="txt_cadastro_busca">Search</string>
     <string name="txt_princial_mapa">Cells on the Map</string>
     <string name="txt_principal_cadastro">Cell Register</string>
     <string name="txt_principal_Lista_celulas">Registred Cells</string>

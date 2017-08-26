@@ -2,7 +2,6 @@ package br.com.celulasreligiosas;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,28 +24,27 @@ public class NoticiasActivity extends AppCompatActivity {
         ParamRequest paramRequest = new ParamRequest();
         paramRequest.source = "google-news";
         paramRequest.sortBy = "top";
-        paramRequest.apiKey = "d5c4573f4a4c4febb31b4e3fe2c0bc5c";
+        paramRequest.apiKey = "2ea0e3de651a4d40b5d78529c6891f59";
 
         RetrofitAsyncTask task = new RetrofitAsyncTask(this);
         task.execute(paramRequest);
-
 
         listaView = (ListView) findViewById(R.id.lista_noticias);
         listaView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Article item = (Article) listaView.getItemAtPosition(i);
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                String site = item.getUrl();
-                if(!site.startsWith("http://")){
-                    site = "http://"+item.getUrl();
+                if(!item.getUrl().isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    String site = item.getUrl();
+                    if (!site.startsWith("http://")) {
+                        site = "http://" + item.getUrl();
+                    }
+                    intent.setData(Uri.parse(site));
+                    startActivity(intent);
                 }
-                intent.setData(Uri.parse(site));
-                startActivity(intent);
             }
         });
-
-
     }
 
 }

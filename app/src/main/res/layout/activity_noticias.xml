@@ -27,7 +27,7 @@
             android:textSize="20dp"
             android:text="@string/txt_noticia_info"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lista_noticias"

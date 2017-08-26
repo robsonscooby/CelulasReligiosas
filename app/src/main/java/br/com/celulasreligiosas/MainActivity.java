@@ -18,10 +18,11 @@ import com.hitomi.cmlibrary.OnMenuSelectedListener;
 public class MainActivity extends AppCompatActivity {
 
     public static final int NUMERO_MONITOR_PHONE = 4844;
-    private  String[] listaNome = {"Tela Mapa",
-                                    "Tela Cadastro",
-                                    "Tela Lista Celulas",
-                                    "Tela Notícias"};
+    private  String[] listaNome = {"Mapa",
+                                    "Cadastro",
+                                    "Lista todas Celulas cadastradas",
+                                    "Notícias mundo",
+                                    "Notícias Evangelícas"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,31 +44,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         CircleMenu circle = (CircleMenu) findViewById(R.id.circleTela);
-        circle.setMainMenu(Color.parseColor("#00857c"),R.mipmap.add,R.mipmap.ic_remover)
-                .addSubMenu(Color.parseColor("#00857c"),R.drawable.ic_mapa)
-                .addSubMenu(Color.parseColor("#00857c"),R.drawable.ic_mapa)
-                .addSubMenu(Color.parseColor("#00857c"),R.drawable.ic_mapa)
-                .addSubMenu(Color.parseColor("#00857c"),R.drawable.ic_mapa).setOnMenuSelectedListener(new OnMenuSelectedListener() {
+        circle.setMainMenu(Color.parseColor("#80e8dd"),R.drawable.ic_add,R.drawable.ic_remove)
+                .addSubMenu(Color.parseColor("#FFEA5752"),R.drawable.ic_mundo)
+                .addSubMenu(Color.parseColor("#FFEABA52"),R.drawable.ic_cadastro)
+                .addSubMenu(Color.parseColor("#FFEADE52"),R.drawable.ic_celulas)
+                .addSubMenu(Color.parseColor("#FF5B7ADF"),R.drawable.ic_news)
+                .addSubMenu(Color.parseColor("#FFA25BDF"),R.drawable.ic_action_name).setOnMenuSelectedListener(new OnMenuSelectedListener() {
             @Override
             public void onMenuSelected(int i) {
-                Toast.makeText(MainActivity.this,"Item selecionado: "+listaNome[i],Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,listaNome[i],Toast.LENGTH_SHORT).show();
 
+                Intent it;
                 switch (i){
                     case 0 :
-                        Intent telaMapa = new Intent(MainActivity.this, MapaActivity.class);
-                        startActivity(telaMapa);
+                        it = new Intent(MainActivity.this, MapaActivity.class);
+                        startActivity(it);
                         break;
                     case 1 :
-                        Intent telaCadastro = new Intent(MainActivity.this, CadastroActivity.class);
-                        startActivity(telaCadastro);
+                        it = new Intent(MainActivity.this, CadastroActivity.class);
+                        startActivity(it);
                         break;
                     case 2 :
-                        Intent telaLista = new Intent(MainActivity.this, CelulasActivity.class);
-                        startActivity(telaLista);
+                        it = new Intent(MainActivity.this, CelulasActivity.class);
+                        startActivity(it);
                         break;
                     case 3 :
-                        Intent it = new Intent(MainActivity.this, NoticiasActivity.class);
+                        it = new Intent(MainActivity.this, NoticiasActivity.class);
                         startActivity(it);
+                        break;
+                    case 4 :
+                        Toast.makeText(MainActivity.this,"Em construção...",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -89,21 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-//    public void telaMapa(View view){
-//        Intent telaMapa = new Intent(this, MapaActivity.class);
-//        startActivity(telaMapa);
-//    }
-
-//    public void telaCadastro(View view){
-//        Intent telaCadastro = new Intent(this, CadastroActivity.class);
-//        startActivity(telaCadastro);
-//    }
-
-//    public void telaListaCelulas(View view){
-//        Intent telaLista = new Intent(this, CelulasActivity.class);
-//        startActivity(telaLista);
-//    }
 
     public void telaNoticias(View view){
         Intent it = new Intent(this, NoticiasActivity.class);
