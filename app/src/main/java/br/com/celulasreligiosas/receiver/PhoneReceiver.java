@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.NotificationCompat;
 import android.telephony.TelephonyManager;
-import android.view.View;
 import android.widget.Toast;
 
 import br.com.celulasreligiosas.MainActivity;
@@ -23,7 +22,6 @@ public class PhoneReceiver extends BroadcastReceiver {
         String estadoLigacao = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
         String numero = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
-
         if (estadoLigacao.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
             CelulasDAO dao = new CelulasDAO(context);
             if (dao.findPhone(numero)) {
@@ -31,7 +29,6 @@ public class PhoneReceiver extends BroadcastReceiver {
                 Toast.makeText(context, "Célula Religiosa ligando! ", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
      public static void enviarNotificacao(Context context){

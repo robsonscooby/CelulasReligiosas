@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(it);
                         break;
                     case 4 :
-                        Toast.makeText(MainActivity.this,"Em construção...",Toast.LENGTH_SHORT).show();
+                        it = new Intent(MainActivity.this, CadastroNoticiaActivity.class);
+                        startActivity(it);
                         break;
                 }
             }

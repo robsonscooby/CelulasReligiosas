@@ -12,4 +12,9 @@
     <string name="txt_principal_Lista_celulas">Células Cadastradas</string>
     <string name="txt_principal_noticias">Notícias</string>
     <string name="txt_noticia_info">Carregando notícias...</string>
+
+    <string name="txt_noticia_autor">Autor</string>
+    <string name="txt_noticia_titulo">Titulo</string>
+    <string name="txt_noticia_site">Site</string>
+    <string name="txt_noticia_descricao">Descrição</string>
 </resources>

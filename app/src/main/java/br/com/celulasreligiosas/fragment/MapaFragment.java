@@ -24,14 +24,13 @@ import br.com.celulasreligiosas.entity.Celula;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
-    private static final String MATRIZ = "R. Trinta e Sete, 237 - Maranguape II, Paulista - PE, 53421-180" ;
+    private static final String MATRIZ = "R. Trinta e Sete,237,Maranguape II, Paulista - PE" ;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         getMapAsync(this);
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

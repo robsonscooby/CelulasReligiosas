@@ -1,16 +1,21 @@
 package br.com.celulasreligiosas.task;
 
+import java.util.List;
+
+import br.com.celulasreligiosas.entity.Noticia;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.POST;
 
 /**
  * Created by robson.carlos.santos on 19/08/2017.
  */
 
 public interface RequestApi {
-    @GET("articles")
-    Call<ResultNewsApi> getNewsApi(@Query("source") String source,
-                                   @Query("sortBy") String sortBy,
-                                   @Query("apiKey") String apiKey);
+    @GET("todasNoticias")
+    Call <List<Noticia>> getNoticias();
+
+    @POST("cadastrar")
+    Call<Noticia> cadastrar(@Body Noticia notica);
 }

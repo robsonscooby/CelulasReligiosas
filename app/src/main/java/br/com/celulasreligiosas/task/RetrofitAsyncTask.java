@@ -1,14 +1,10 @@
 package br.com.celulasreligiosas.task;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +12,7 @@ import java.util.List;
 import br.com.celulasreligiosas.NoticiasActivity;
 import br.com.celulasreligiosas.R;
 import br.com.celulasreligiosas.adapter.NoticiasAdapter;
-import br.com.celulasreligiosas.entity.Article;
+import br.com.celulasreligiosas.entity.Noticia;
 import br.com.celulasreligiosas.entity.ParamRequest;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -26,7 +22,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by robson.carlos.santos on 19/08/2017.
  */
 
-public class RetrofitAsyncTask extends AsyncTask<ParamRequest, Void, List<Article>> {
+public class RetrofitAsyncTask extends AsyncTask<ParamRequest, Void, List<Noticia>> {
+
+    public static final String SERVICE_TODAS_NOTICIAS = "http://ws-celulasreligiosas-app-celulas-religiosas.a3c1.starter-us-west-1.openshiftapps.com/rest/serviceNoticia/";
 
     private NoticiasActivity context;
     private ListView listaView;
@@ -41,15 +39,14 @@ public class RetrofitAsyncTask extends AsyncTask<ParamRequest, Void, List<Articl
     }
 
     @Override
-    protected List<Article> doInBackground(ParamRequest... param) {
+    protected List<Noticia> doInBackground(ParamRequest... param) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://newsapi.org/v1/").addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(SERVICE_TODAS_NOTICIAS).addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestApi requestApi = retrofit.create(RequestApi.class);
-        ParamRequest paramRequest = param[0];
         try {
-            Response<ResultNewsApi> response = requestApi.getNewsApi(paramRequest.source,paramRequest.sortBy,paramRequest.apiKey).execute();
-            List<Article> listArt = response.body().getArticles();
+            Response<List<Noticia>> response = requestApi.getNoticias().execute();
+            List<Noticia> listArt = response.body();
             return listArt;
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,7 +55,7 @@ public class RetrofitAsyncTask extends AsyncTask<ParamRequest, Void, List<Articl
     }
 
     @Override
-    protected void onPostExecute(List<Article> listaNoticias) {
+    protected void onPostExecute(List<Noticia> listaNoticias) {
         super.onPostExecute(listaNoticias);
         barra.setVisibility(View.GONE);
         textInfo.setVisibility(View.GONE);

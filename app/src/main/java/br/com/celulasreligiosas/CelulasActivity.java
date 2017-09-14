@@ -72,7 +72,6 @@ public class CelulasActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         carregarLista();
     }
 
@@ -105,7 +104,6 @@ public class CelulasActivity extends AppCompatActivity {
         Intent intentMapa = new Intent(Intent.ACTION_VIEW);
         intentMapa.setData(Uri.parse("geo:0,0?q="+celula.getEndereco()));
         verMapa.setIntent(intentMapa);
-
 
         MenuItem visitaSite = menu.add("Visitar site");
         Intent intent = new Intent(Intent.ACTION_VIEW);
