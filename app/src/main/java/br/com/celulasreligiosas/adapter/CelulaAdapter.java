@@ -42,8 +42,13 @@ public class CelulaAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return celulas.get(i).getId();
+        return 0;
     }
+
+//    @Override
+//    public long getItemId(int i) {
+//        return celulas.get(i).getId();
+//    }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {

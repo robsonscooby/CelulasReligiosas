@@ -14,9 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import br.com.celulasreligiosas.dao.CelulasDAO;
+import java.io.File;
+import java.util.UUID;
+
 import br.com.celulasreligiosas.entity.Celula;
 import br.com.celulasreligiosas.helper.CadastroHelper;
 import br.com.celulasreligiosas.task.HttpUrlConnectionAsyncTask;
@@ -28,11 +32,15 @@ public class CadastroActivity extends AppCompatActivity {
     private CadastroHelper cadastroHelper;
     private String caminhoFoto;
     private TextView cep;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+        inicializarFirebase();
 
         cadastroHelper = new CadastroHelper(this);
 
@@ -85,16 +93,14 @@ public class CadastroActivity extends AppCompatActivity {
         if(null != celula) {
             switch (item.getItemId()) {
                 case R.id.menu_cadastro_ok:
-
-                    CelulasDAO dao = new CelulasDAO(this);
-
-                    if (celula.getId() != null) {
-                        dao.update(celula);
+                    if (celula.getUid() != null) {
+                        //atualiza celula
+                        databaseReference.child("Celula").child(celula.getUid()).setValue(celula);
                     } else {
-                        dao.insert(celula);
+                        //inseri celula nova
+                        celula.setUid(UUID.randomUUID().toString());
+                        databaseReference.child("Celula").child(celula.getUid()).setValue(celula);
                     }
-
-                    dao.close();
 
                     Toast.makeText(this, "Celula " + celula.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
                     finish();
@@ -105,6 +111,13 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(this, "Favor preencher todos os campos.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Conexao
+    private void inicializarFirebase(){
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
 }

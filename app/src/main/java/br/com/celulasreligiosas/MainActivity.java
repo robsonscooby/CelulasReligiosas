@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.hitomi.cmlibrary.CircleMenu;
@@ -39,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.READ_PHONE_STATE},NUMERO_MONITOR_PHONE);
             }
-        }else{
-
         }
 
+        //Botoes da tela inicial
         CircleMenu circle = (CircleMenu) findViewById(R.id.circleTela);
         circle.setMainMenu(Color.parseColor("#80e8dd"),R.drawable.ic_add,R.drawable.ic_remove)
                 .addSubMenu(Color.parseColor("#FFEA5752"),R.drawable.ic_mundo)
@@ -95,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-    }
-
-    public void telaNoticias(View view){
-        Intent it = new Intent(this, NoticiasActivity.class);
-        startActivity(it);
     }
 
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1068919353925",
+    "firebase_url": "https://celula-religiosa.firebaseio.com",
+    "project_id": "celula-religiosa",
+    "storage_bucket": "celula-religiosa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068919353925:android:c011ada7672904ae",
+        "android_client_info": {
+          "package_name": "br.com.celulasreligiosas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068919353925-p7b16i0epe6tcnl185p869ov483j812l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.celulasreligiosas",
+            "certificate_hash": "7b9969ff346ab166c873baee128eae44cd30a3ef"
+          }
+        },
+        {
+          "client_id": "1068919353925-6qvuadbuce43qssvo2dprd7fuvmuofh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC47Dk09-ay6GZR5sz-DmVLevbsm9GQMR8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068919353925-6qvuadbuce43qssvo2dprd7fuvmuofh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

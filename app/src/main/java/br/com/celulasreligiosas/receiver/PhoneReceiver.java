@@ -11,11 +11,17 @@ import android.support.v7.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import br.com.celulasreligiosas.MainActivity;
 import br.com.celulasreligiosas.R;
-import br.com.celulasreligiosas.dao.CelulasDAO;
 
 public class PhoneReceiver extends BroadcastReceiver {
+
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -23,11 +29,11 @@ public class PhoneReceiver extends BroadcastReceiver {
         String numero = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
         if (estadoLigacao.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
-            CelulasDAO dao = new CelulasDAO(context);
-            if (dao.findPhone(numero)) {
-                enviarNotificacao(context);
-                Toast.makeText(context, "Célula Religiosa ligando! ", Toast.LENGTH_SHORT).show();
-            }
+//            CelulasDAO dao = new CelulasDAO(context);
+//            if (dao.findPhone(numero)) {
+//                enviarNotificacao(context);
+//                Toast.makeText(context, "Célula Religiosa ligando! ", Toast.LENGTH_SHORT).show();
+//            }
         }
     }
 
@@ -55,4 +61,15 @@ public class PhoneReceiver extends BroadcastReceiver {
 
         nm.notify(R.mipmap.ic_launcher_round,n);
     }
+
+//    //Conexao
+//    private void inicializarFirebase(){
+//        FirebaseApp.initializeApp(this);
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//
+//        //Serve para salvar e alterar na nuvem e no app
+//        firebaseDatabase.setPersistenceEnabled(true);
+//
+//        databaseReference = firebaseDatabase.getReference();
+//    }
 }

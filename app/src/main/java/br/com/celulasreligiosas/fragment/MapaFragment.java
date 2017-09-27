@@ -13,9 +13,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.celulasreligiosas.dao.CelulasDAO;
 import br.com.celulasreligiosas.entity.Celula;
 
 /**
@@ -25,6 +25,11 @@ import br.com.celulasreligiosas.entity.Celula;
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
     private static final String MATRIZ = "R. Trinta e Sete,237,Maranguape II, Paulista - PE" ;
+    private List<Celula> listaCelulas = new ArrayList<Celula>();
+
+    public MapaFragment(List<Celula> listaCelulas) {
+        this.listaCelulas= listaCelulas;
+    }
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -42,8 +47,6 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
             googleMap.moveCamera(cameraUpdate);
         }
 
-        CelulasDAO dao = new CelulasDAO(getContext());
-        List<Celula> listaCelulas = dao.findAll();
         if(!listaCelulas.isEmpty()){
             for(Celula item : listaCelulas){
                 LatLng coordenada = localizaNoMapa(item.getEndereco());
@@ -56,7 +59,6 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
                 }
             }
         }
-        dao.close();
     }
 
     private LatLng localizaNoMapa(String endereco) {
@@ -71,5 +73,6 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
         }
         return null;
     }
+
 }
 

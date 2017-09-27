@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Celula implements Serializable{
 
-    private Long id;
+    private String uid;
     private String nome;
     private String endereco;
     private String telefone;
@@ -16,12 +16,12 @@ public class Celula implements Serializable{
     private String descricao;
     private String caminhoFoto;
 
-    public Long getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getNome() {
@@ -75,7 +75,7 @@ public class Celula implements Serializable{
     @Override
     public String toString() {
         return "Celula{" +
-                "id=" + id +
+                "uid=" + uid +
                 ", nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", telefone='" + telefone + '\'' +
