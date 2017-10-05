@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import br.com.celulasreligiosas.adapter.CelulaAdapter;
 import br.com.celulasreligiosas.entity.Celula;
@@ -91,8 +90,6 @@ public class CelulasActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        inicializarFirebase();
-//        eventoDataBase();
     }
 
     @Override
@@ -125,14 +122,16 @@ public class CelulasActivity extends AppCompatActivity {
         intentMapa.setData(Uri.parse("geo:0,0?q="+celula.getEndereco()));
         verMapa.setIntent(intentMapa);
 
-        MenuItem visitaSite = menu.add("Visitar site");
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        String site = celula.getSite();
-        if(!site.startsWith("http://")){
-            site = "http://"+celula.getSite();
+        if(null != celula.getSite()) {
+            MenuItem visitaSite = menu.add("Visitar site");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            String site = celula.getSite();
+            if (!site.startsWith("http://")) {
+                site = "http://" + celula.getSite();
+            }
+            intent.setData(Uri.parse(site));
+            visitaSite.setIntent(intent);
         }
-        intent.setData(Uri.parse(site));
-        visitaSite.setIntent(intent);
 
         MenuItem deletar = menu.add("Deletar");
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -140,16 +139,10 @@ public class CelulasActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 //deleta celula
                 databaseReference.child("Celula").child(celula.getUid()).removeValue();
-                //carregarLista();
                 return false;
             }
         });
     }
-
-//    private void carregarLista(){
-//        eventoDataBase();
-//
-//    }
 
     //Seleciona todas as celulas
     private void eventoDataBase() {
@@ -259,11 +252,13 @@ public class CelulasActivity extends AppCompatActivity {
     //Conexao
     private void inicializarFirebase(){
         FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        if(null == databaseReference) {
+            firebaseDatabase = FirebaseDatabase.getInstance();
 
-        //Serve para salvar e alterar na nuvem e no app
-        //firebaseDatabase.setPersistenceEnabled(true);
+//            //Serve para salvar e alterar na nuvem e no app
+//            firebaseDatabase.setPersistenceEnabled(true);
 
-        databaseReference = firebaseDatabase.getReference();
+            databaseReference = firebaseDatabase.getReference();
+        }
     }
 }

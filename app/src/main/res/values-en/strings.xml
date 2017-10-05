@@ -12,4 +12,12 @@
     <string name="txt_principal_Lista_celulas">Registred Cells</string>
     <string name="txt_principal_noticias">News</string>
     <string name="txt_noticia_info">Loading news...</string>
+
+    <string name="txt_noticia_autor">Autor</string>
+    <string name="txt_noticia_titulo">Titulo</string>
+    <string name="txt_noticia_site">Site</string>
+    <string name="txt_noticia_descricao">Descrição</string>
+
+    <string name="menu_buscar">Buscar</string>
+    <string name="menu_limpar_busca">Limpar busca</string>
 </resources>

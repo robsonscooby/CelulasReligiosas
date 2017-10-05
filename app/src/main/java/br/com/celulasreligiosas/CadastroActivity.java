@@ -100,6 +100,11 @@ public class CadastroActivity extends AppCompatActivity {
                         //inseri celula nova
                         celula.setUid(UUID.randomUUID().toString());
                         databaseReference.child("Celula").child(celula.getUid()).setValue(celula);
+
+                        //transporta a nova celula criada para a tela do mapa
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("celula",celula);
+                        setResult(Activity.RESULT_OK,returnIntent);
                     }
 
                     Toast.makeText(this, "Celula " + celula.getNome() + " salvo!", Toast.LENGTH_SHORT).show();

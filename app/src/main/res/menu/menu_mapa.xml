@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mn_search"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:title="@string/menu_buscar"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/mn_clear_filter"
+        android:orderInCategory="90"
+        android:title="@string/menu_limpar_busca"
+        android:icon="@android:drawable/ic_menu_revert"
+        app:showAsAction="always|withText" />
+    <item android:id="@+id/menu_inicial"
+        android:orderInCategory="100"
+        android:title="Entrar"
+        android:icon="@drawable/ic_receber"
+        app:showAsAction="always|withText"/>
+</menu>
