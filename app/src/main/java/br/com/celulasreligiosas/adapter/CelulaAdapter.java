@@ -3,6 +3,7 @@ package br.com.celulasreligiosas.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,10 +79,13 @@ public class CelulaAdapter extends BaseAdapter {
         String caminhoFoto = celula.getCaminhoFoto();
         if(caminhoFoto != null) {
             Bitmap bm = BitmapFactory.decodeFile(celula.getCaminhoFoto());
-            Bitmap bmReduzido = Bitmap.createScaledBitmap(bm, 100, 100, true);
-            imagem.setImageBitmap(bmReduzido);
-            imagem.setScaleType(ImageView.ScaleType.FIT_XY);
+            if(bm != null) {
+                Bitmap bmReduzido = Bitmap.createScaledBitmap(bm, 100, 100, true);
+                imagem.setImageBitmap(bmReduzido);
+                imagem.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
         }
+
         return viewCelula;
     }
 }

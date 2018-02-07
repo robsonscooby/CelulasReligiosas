@@ -1,16 +1,16 @@
 package br.com.celulasreligiosas.adapter;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.celulasreligiosas.R;
@@ -20,58 +20,74 @@ import br.com.celulasreligiosas.entity.Noticia;
  * Created by robson.carlos.santos on 19/08/2017.
  */
 
-public class NoticiasAdapter extends BaseAdapter {
+public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHolder> {
 
-    private List<Noticia> listaNoticias;
-    private Context context;
+    private List<Noticia> listaNoticias = new ArrayList<>();
+    private final OnTaskClickedListener listener;
 
-    public NoticiasAdapter(List<Noticia> listaNoticias, Context context) {
+    public NoticiasAdapter(OnTaskClickedListener onTaskClickedListener) {
+        this.listener = onTaskClickedListener;
+    }
+
+    public void replaceItems(List<Noticia> listaNoticias) {
         this.listaNoticias = listaNoticias;
-        this.context = context;
     }
 
     @Override
-    public int getCount() {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.lista_item_noticia, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Noticia noticia = listaNoticias.get(position);
+        holder.nome.setText(noticia.getTitulo());
+        holder.fone.setText(noticia.getAutor());
+//        if(null != holder.end) {
+//            holder.end.setText(noticia.getDescricao());
+//        }
+
+        if(null != noticia.getFoto()) {
+            byte[] bt = Base64.decode(noticia.getFoto(), Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bt, 0, bt.length);
+            holder.imagem.setImageBitmap(bitmap);
+        }
+
+        holder.view.setOnClickListener(view -> listener.onClick(noticia));
+        holder.view.setOnLongClickListener(view -> {
+            listener.onLongClick(noticia);
+            return true;
+        });
+    }
+
+    @Override
+    public int getItemCount() {
         return listaNoticias.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return listaNoticias.get(i);
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        View view;
+        TextView nome;
+        TextView fone;
+        //TextView end;
+        ImageView imagem;
+
+        public ViewHolder(View v) {
+            super(v);
+            view = v;
+            nome = (TextView) v.findViewById(R.id.item_nome);
+            fone = (TextView) v.findViewById(R.id.item_telefone);
+            //end = (TextView) v.findViewById(R.id.item_endereco);
+            imagem = (ImageView) v.findViewById(R.id.item_foto);
+        }
+
     }
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        Noticia item = listaNoticias.get(i);
-
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View viewNoticia = view;
-        if(null == viewNoticia) {
-            viewNoticia = inflater.inflate(R.layout.lista_item_noticia, viewGroup, false);
-        }
-
-        TextView nome = (TextView) viewNoticia.findViewById(R.id.item_nome);
-        nome.setText(item.getTitulo());
-
-        TextView fone = (TextView) viewNoticia.findViewById(R.id.item_telefone);
-        fone.setText(item.getAutor());
-
-        TextView end = (TextView) viewNoticia.findViewById(R.id.item_endereco);
-        if(null != end) {
-            end.setText(item.getDescricao());
-        }
-
-        if(null != item.getFoto()) {
-            ImageView imagem = (ImageView) viewNoticia.findViewById(R.id.item_foto);
-            byte[] bt = Base64.decode(item.getFoto(), Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bt, 0, bt.length);
-            imagem.setImageBitmap(bitmap);
-        }
-        return viewNoticia;
+    public interface OnTaskClickedListener {
+        public void onClick(Noticia noticia);
+        public void onLongClick(Noticia noticia);
     }
 }

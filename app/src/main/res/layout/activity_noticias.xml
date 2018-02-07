@@ -29,9 +29,10 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lista_noticias"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_noticias"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

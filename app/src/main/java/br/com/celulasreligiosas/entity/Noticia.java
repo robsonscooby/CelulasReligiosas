@@ -1,12 +1,22 @@
 package br.com.celulasreligiosas.entity;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
+import java.io.Serializable;
+
 /**
  * Created by robson.carlos.santos on 29/08/2017.
  */
 
-public class Noticia {
+@Entity
+public class Noticia implements Serializable {
 
-	private int codigo;	
+	@PrimaryKey(autoGenerate = false)
+	@ColumnInfo(name = "id")
+	private int codigo;
 	private String autor;
 	private String titulo;
 	private String descricao;
@@ -14,9 +24,10 @@ public class Noticia {
 	private String foto;
 
 	public Noticia(){
-		
+
 	}
-	
+
+	@Ignore
 	public Noticia(int codigo, String autor, String titulo, String descricao, String url, String foto ) {
 		super();
 		this.codigo = codigo;
@@ -27,14 +38,15 @@ public class Noticia {
 		this.foto = foto;
 	}
 
-    public Noticia(String autor, String titulo, String descricao, String url, String foto) {
-        super();
-        this.autor = autor;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.url = url;
+	@Ignore
+	public Noticia(String autor, String titulo, String descricao, String url, String foto) {
+		super();
+		this.autor = autor;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.url = url;
 		this.foto = foto;
-    }
+	}
 
 	public int getCodigo() {
 		return codigo;

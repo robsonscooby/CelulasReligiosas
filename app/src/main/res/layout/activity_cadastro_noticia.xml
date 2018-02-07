@@ -1,68 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
+        android:layout_height="225dp">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/noticia_imagem"
             android:layout_width="match_parent"
-            android:layout_height="225dp">
+            android:layout_height="200dp"
+            android:background="#00A8EC"
+            android:src="@drawable/person" />
 
-            <ImageView
-                android:id="@+id/noticia_imagem"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/person"
-                android:background="#00A8EC"
-                />
+        <Button
+            android:id="@+id/noticia_btn_galeria"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/fundo_camera" />
 
-            <Button
-                android:id="@+id/noticia_btn_galeria"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/fundo_camera"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
+    <EditText
+        android:id="@+id/noticia_autor"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:hint="@string/txt_noticia_autor"
+        android:inputType="textCapSentences"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:layout_editor_absoluteX="5dp"
+        tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/noticia_autor"
-            android:hint="@string/txt_noticia_autor"
-            android:inputType="textCapSentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/noticia_titulo"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/txt_noticia_titulo"
+        android:inputType="textCapSentences"
+        app:layout_constraintTop_toBottomOf="@+id/noticia_autor"
+        tools:layout_editor_absoluteX="5dp"
+        tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/noticia_titulo"
-            android:hint="@string/txt_noticia_titulo"
-            android:inputType="textCapSentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/noticia_site"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/txt_noticia_site"
+        android:inputType="textUri"
+        app:layout_constraintTop_toBottomOf="@+id/noticia_titulo"
+        tools:layout_editor_absoluteX="5dp"
+        tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/noticia_site"
-            android:hint="@string/txt_noticia_site"
-            android:inputType="textUri"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/noticia_descricao"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/txt_noticia_descricao"
+        android:inputType="textCapSentences"
+        app:layout_constraintTop_toBottomOf="@+id/noticia_site"
+        tools:layout_editor_absoluteX="5dp"
+        tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/noticia_descricao"
-            android:hint="@string/txt_noticia_descricao"
-            android:inputType="textCapSentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
-    </LinearLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
-</RelativeLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+
+</android.support.constraint.ConstraintLayout>
